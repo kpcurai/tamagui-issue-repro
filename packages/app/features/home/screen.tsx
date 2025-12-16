@@ -9,7 +9,8 @@ import {
   SwitchThemeButton,
   useToastController,
   XStack,
-  YStack
+  YStack,
+  Text,
 } from '@my/ui'
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
 import { useState } from 'react'
@@ -17,13 +18,8 @@ import { Platform } from 'react-native'
 import { useLink } from 'solito/navigation'
 
 export function HomeScreen({ pagesMode = false }: { pagesMode?: boolean }) {
-  const linkTarget = pagesMode ? '/pages-example-user' : '/user'
-  const linkProps = useLink({
-    href: `${linkTarget}/nate`,
-  })
-
   return (
-    <YStack flex={1} justify="center" items="center" gap="$8" p="$4" bg="$background">      
+    <YStack flex={1} justify="center" items="center" gap="$8" p="$4" bg="$background">
       <XStack
         position="absolute"
         width="100%"
@@ -55,7 +51,13 @@ export function HomeScreen({ pagesMode = false }: { pagesMode?: boolean }) {
         <Separator />
       </YStack>
 
-      <Button {...linkProps}>Link to user</Button>
+      <YStack group="Demo" width={300} backgroundColor="lightgray">
+        <ChevronDown height={30} width={30} color="black" $group-Demo-hover={{ color: 'red' }} />
+        <Text color="black" $group-Demo-hover={{ color: 'red' }}>
+          On mobile web, despite us having the same color prop, I won't become red on press while
+          the icon will
+        </Text>
+      </YStack>
 
       <SheetDemo />
     </YStack>
